@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create new product</title>
+
+        <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+        }
+
+        html {
+            font-size: 62.5%;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 5rem 5rem 10rem;
+            line-height: 1.7;
+            font-family: "Nunito Sans", sans-serif;
+            color: #555;
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, #e15d5d, #e30000);
+        }
+
+        h1 {
+            font-family: "Megrim", sans-serif;
+            font-size: 6rem;
+            color: white;
+            transform: skewY(-5deg);
+            text-align: center;
+            position: relative;
+            word-spacing: 3px;
+        }
+
+        h1::before {
+            content: "";
+            display: block;
+            height: 65%;
+            width: 49%;
+            position: absolute;
+            top: 105%;
+            left: 50%;
+            background: linear-gradient(to bottom, #e15d5d, #e30000);
+            opacity: 0.8;
+            z-index: -1;
+            transform: skewY(370deg) translate(-50%, -50%);
+        }
+
+        .container {
+            width: 90rem;
+            margin: 0 auto;
+        }
+
+        .cards-container {
+            margin-top: 8rem;
+        }
+
+        .card {
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 2rem 6rem 1rem rgba(0, 0, 0, 0.15);
+            margin: 2rem auto;
+            /* transform: skewX(-20deg); */
+            display: flex;
+            transition: all 0.5s;
+            border-radius: 20px;
+            width: 40rem;
+
+        }
+
+        .card .search-form {
+            height: 5rem;
+            display: flex;
+        }
+
+        input {
+            padding: .5rem 1rem;
+            margin: .5rem 2rem;
+            outline: none;
+            /* border-bottom: 1px solid #CA1E1E; */
+            border: none;
+            border-bottom: 1px solid gray;
+            font-size: 2rem;
+            width: 100%;
+        }
+
+        .checkbox {
+            display: flex;
+        }
+
+        #box {
+            width: 1.5rem;
+        }
+
+        .box-label {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+        }
+
+        .card form button {
+            height: 5rem;
+            padding: .5rem 1rem;
+            margin-left: 8rem;
+            margin-top: 1.5rem;
+            background-color: #e55a5a;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        .card form button:hover {
+            background-color: #e30000;
+        }
+
+        .card__emoji {
+font-size: 5.5rem;
+            line-height: 1.2;
+            padding: 1.5rem 6rem 0.5rem 1.5rem;
+            letter-spacing: -4rem;
+            transform: skewX(20deg);
+        }
+
+        .card__title-box {
+            background: linear-gradient(to bottom, #e15d5d, #e30000);
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        .card__title {
+            font-family: "Megrim", sans-serif;
+            color: white;
+            font-size: 3.25rem;
+            transform: skewX(20deg);
+        }
+
+        .card__details {
+            display: flex;
+        }
+
+        .card__detail-box {
+            align-self: stretch;
+            border-right: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+
+        .card__detail-box:last-child {
+            border: none;
+        }
+
+        .card__detail {
+            font-weight: 400;
+            font-size: 1.8rem;
+            transform: skewX(20deg);
+            padding: 1.75rem;
+        }
+
+        .card__detail--organic {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 1.9rem;
+            background-image: linear-gradient(to right, #e15d5d, #e30000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .card__detail--price {
+            font-weight: 900;
+            font-size: 1.9rem;
+        }
+
+        .card__link:link,
+        .card__link:visited {
+            flex: 0 0 auto;
+            background-color: #e17979;
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 2.5rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .card__link:hover,
+        .card__link:active {
+            background-color: #e15d5d;
+        }
+
+        .card__link span {
+            transform: skewX(20deg);
+        }
+
+        .card:hover {
+            /* transform: skewX(-20deg) scale(1.08); */
+            box-shadow: 0 3rem 8rem 2rem rgba(0, 0, 0, 0.15);
+        }
+
+        .emoji-left {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .emoji-right {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .not-organic {
+            display: none;
+        }
+    </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>🥦 Create your fruits 🌽</h1>
+            <figure class="card">
+                <form method="POST" class="create-form">
+                    <div class="input-wrapper">
+                        <input type="text" name="productName"
+                            placeholder="Product Name">
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" name="image" placeholder="Image">
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" name="from" placeholder="Country">
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" name="nutrients"
+                            placeholder="Nutrients">
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="number" name="quantity"
+                            placeholder="Quantity">
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" name="price" placeholder="Price">
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" name="description"
+                            placeholder="Product Name">
+                    </div>
+                    <div class="input-wrapper checkbox">
+                        <input id="box" name="organic" type="checkbox"
+                            checked="true" />
+                        <label class="box-label" for="">
+                            Organic
+                        </label>
+                    </div>
+                    <button type="submit">
+                        🥭🥭BOOM! Add fruit🥦🥦
+                    </button>
+                </form>
+            </figure>
+        </div>
+    </body>
+</html>
